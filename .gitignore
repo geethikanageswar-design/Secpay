@@ -1,0 +1,32 @@
+# Virtual Environment
+backend/venv/
+venv/
+.venv/
+env/
+
+# Environment variables / Secrets
+backend/.env
+.env
+.env.local
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Database files
+backend/secpay.db
+*.db
+*.sqlite3
+
+# Log files
+*.log
+backend/uvicorn_err.log
+backend/uvicorn_out.log
+
+# OS/IDE metadata
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

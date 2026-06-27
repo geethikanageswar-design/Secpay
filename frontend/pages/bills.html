@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecPay - Bills</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>SecPay</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard_v4.html" class="nav-item">Dashboard</a>
+                <a href="bills.html" class="nav-item active">Bills</a>
+                <a href="payment_history.html" class="nav-item">Payment History</a>
+                <a href="#" class="nav-item" id="nav-logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1 id="welcome-msg">Your Bills</h1>
+                <div class="user-profile">
+                    <span id="user-initial">U</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Bills Section -->
+                <div class="section-bills" id="section-bills">
+                    <div class="section-header">
+                        <h2>Pending & Overdue Bills</h2>
+                        <button class="btn-secondary" id="btn-refresh">Refresh Data</button>
+                    </div>
+
+                    <!-- Loader -->
+                    <div id="loading" class="loader-container">
+                        <div class="spinner"></div>
+                        <p>Loading your data...</p>
+                    </div>
+
+                    <!-- Error -->
+                    <div id="dashboard-error" class="error-msg" style="display:none; margin-bottom: 1rem;"></div>
+
+                    <!-- Bills List -->
+                    <div class="bills-list" id="bills-container" style="display:none;">
+                        <!-- JS injected content goes here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content card">
+            <h2>Process Payment</h2>
+            <p>You are paying: <strong id="modal-provider-name"></strong></p>
+            <h3 id="modal-amount"></h3>
+            <div id="modal-penalty-notice" class="penalty-notice"
+                style="display: none; color: var(--danger-color); font-size: 0.9em; margin-bottom: 10px;"></div>
+
+            <form id="payment-form">
+                <input type="hidden" id="modal-bill-id">
+
+                <div style="text-align: center; margin: 2rem 0;">
+                    <p style="color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">
+                        You will be redirected securely to Razorpay to complete your payment via Card, UPI, or Net
+                        Banking.
+                    </p>
+                </div>
+                <div class="modal-actions" style="margin-top: 1rem;">
+                    <button type="button" class="btn-secondary" id="btn-cancel-payment">Cancel</button>
+                    <button type="submit" class="btn-primary" id="btn-confirm-payment">Pay with Razorpay</button>
+                </div>
+                <div id="payment-error" class="error-msg" style="color:var(--danger-color); margin-top: 10px;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="../scripts/api_v4.js"></script>
+    <script src="../scripts/bills.js"></script>
+</body>
+
+</html>

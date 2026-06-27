@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecPay - Payment History</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>SecPay</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard_v4.html" class="nav-item">Dashboard</a>
+                <a href="bills.html" class="nav-item">Bills</a>
+                <a href="payment_history.html" class="nav-item active">Payment History</a>
+                <a href="#" class="nav-item" id="nav-logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1 id="welcome-msg">Payment History</h1>
+                <div class="user-profile">
+                    <span id="user-initial">U</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <!-- Payment History Section -->
+                <div class="section-history" id="section-history">
+                    <div class="section-header">
+                        <h2>Your Transactions</h2>
+                        <button class="btn-secondary" id="btn-refresh">Refresh Data</button>
+                    </div>
+                    <!-- Loader -->
+                    <div id="loading" class="loader-container">
+                        <div class="spinner"></div>
+                        <p>Loading your data...</p>
+                    </div>
+
+                    <!-- Error -->
+                    <div id="dashboard-error" class="error-msg" style="display:none; margin-bottom: 1rem;"></div>
+
+                    <div class="history-list" id="history-container" style="display:none;">
+                        <!-- JS injected content goes here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div id="invoice-modal" class="modal">
+        <div class="modal-content card" id="invoice-content" style="max-width: 600px;">
+            <div class="invoice-header"
+                style="text-align: center; margin-bottom: 2rem; border-bottom: 2px solid #eee; padding-bottom: 1rem;">
+                <h2>SecPay Utility Billing Services</h2>
+                <p style="color: var(--text-muted); margin-top: 5px;">Payment Receipt</p>
+            </div>
+
+            <div class="invoice-details"
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 2rem;">
+                <div>
+                    <p class="text-sm text-muted">Invoice Number</p>
+                    <p id="inv-number" style="font-weight: 500;"></p>
+                </div>
+                <div>
+                    <p class="text-sm text-muted">Transaction ID</p>
+                    <p id="inv-txn-id" style="font-weight: 500; font-size: 0.9em; word-break: break-all;"></p>
+                </div>
+                <div>
+                    <p class="text-sm text-muted">Invoice Date</p>
+                    <p id="inv-date" style="font-weight: 500;"></p>
+                </div>
+                <div>
+                    <p class="text-sm text-muted">Status</p>
+                    <span id="inv-status" class="badge"></span>
+                </div>
+                <div>
+                    <p class="text-sm text-muted">Billed To</p>
+                    <p id="inv-sender" style="font-weight: 500;"></p>
+                </div>
+                <div>
+                    <p class="text-sm text-muted">Provider</p>
+                    <p id="inv-receiver" style="font-weight: 500;"></p>
+                </div>
+            </div>
+
+            <div class="invoice-table-container" style="margin-bottom: 2rem;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #eee; text-align: left;">
+                            <th style="padding: 10px 0;">Description</th>
+                            <th style="padding: 10px 0; text-align: right;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px 0;" id="inv-bill-name"></td>
+                            <td style="padding: 10px 0; text-align: right;" id="inv-base-amount"></td>
+                        </tr>
+                        <tr id="inv-late-fee-row" style="display: none; color: var(--danger-color);">
+                            <td style="padding: 10px 0;">Late Fee (2%)</td>
+                            <td style="padding: 10px 0; text-align: right;" id="inv-late-fee"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot style="border-top: 2px solid #eee;">
+                        <tr>
+                            <td style="padding: 15px 0; font-weight: bold;">Total Paid (<span id="inv-method"></span>)
+                            </td>
+                            <td style="padding: 15px 0; text-align: right; font-weight: bold; font-size: 1.2em;"
+                                id="inv-total"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="invoice-footer"
+                style="text-align: center; color: var(--text-muted); font-size: 0.85em; margin-top: 2rem;">
+                <p>This is a system-generated invoice.</p>
+            </div>
+
+            <div class="modal-actions no-print"
+                style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
+                <button type="button" class="btn-secondary" onclick="closeInvoiceModal()">Close</button>
+                <button type="button" class="btn-primary" onclick="printInvoice()">Print Invoice</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/api_v4.js"></script>
+    <script src="../scripts/payment_history.js"></script>
+</body>
+
+</html>

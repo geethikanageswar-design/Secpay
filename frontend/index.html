@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecPay - Login & Register</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h1>SecPay</h1>
+                <p>The modern platform to manage utility bills.</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <h2>Sign In</h2>
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required placeholder="you@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required placeholder="••••••••">
+                </div>
+                <div class="error-msg" id="login-error"></div>
+                <button type="submit" class="btn-primary" id="btn-login" disabled>Sign In</button>
+                <p class="switch-mode">Don't have an account? <a href="#" id="to-register">Register</a></p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form">
+                <h2>Create Account</h2>
+                <div class="input-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required placeholder="you@example.com">
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required placeholder="••••••••">
+                </div>
+                <div class="error-msg" id="register-error"></div>
+                <button type="submit" class="btn-primary" id="btn-register" disabled>Register</button>
+                <p class="switch-mode">Already have an account? <a href="#" id="to-login">Sign In</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts/api_v4.js"></script>
+    <script src="scripts/auth_v4.js"></script>
+</body>
+
+</html>

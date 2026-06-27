@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecPay - Dashboard</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <h2>SecPay</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="dashboard_v4.html" class="nav-item active">Dashboard</a>
+                <a href="bills.html" class="nav-item">Bills</a>
+                <a href="payment_history.html" class="nav-item">Payment History</a>
+                <a href="#" class="nav-item" id="nav-logout">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1 id="welcome-msg">Welcome</h1>
+                <div class="user-profile">
+                    <span id="user-initial">U</span>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+
+                <!-- Summary Cards -->
+                <div class="summary-cards" id="section-dashboard">
+                    <div class="card summary-card">
+                        <h3>Total Outstanding</h3>
+                        <div class="value" id="total-outstanding" style="color: var(--danger-color, #dc3545);">₹0.00
+                        </div>
+                    </div>
+                    <div class="card summary-card">
+                        <h3>Bills Pending</h3>
+                        <div class="value" id="total-pending">0</div>
+                    </div>
+                    <div class="card summary-card">
+                        <h3>Bills Overdue</h3>
+                        <div class="value" id="total-overdue" style="color: var(--danger-color, #dc3545);">0</div>
+                    </div>
+                    <div class="card summary-card">
+                        <h3>Paid Bills</h3>
+                        <div class="value" id="total-paid" style="color: #28a745;">0</div>
+                    </div>
+                    <div class="card summary-card">
+                        <h3>Failed Payments</h3>
+                        <div class="value" id="total-failed" style="color: #fd7e14;">0</div>
+                    </div>
+
+                </div>
+
+                <!-- Rest removed for isolation -->
+            </div>
+        </main>
+    </div>
+
+    <script src="../scripts/api_v4.js"></script>
+    <script src="../scripts/dashboard_v4.js"></script>
+</body>
+
+</html>
